@@ -7,9 +7,12 @@ const gift = document.getElementById("gift");
 const giftRibbon = document.getElementById("giftRibbon");
 const modal = document.getElementById("giftModal");
 const closeModal = document.getElementById("closeModal");
+const giftNote = document.getElementById("giftNote");
+const giftProgressFill = document.getElementById("giftProgressFill");
+const giftMessage = document.getElementById("giftMessage");
 
 const loveLetter =
-  "You are the reason ordinary days become beautiful memories. Today, I just want you to feel as loved, treasured, and celebrated as you make me feel every single day. Happy Birthday, my love. ❤️";
+  "Happy birthday to my one and only.You make life sweeter just by being in it.I admire your strength, your kindness, your beautiful heart.I’m so lucky to love and be loved by you. कुछ खास है तुम में जो अल्फाज़ों में नहीं आता,दिल कहता है बहुत कुछ, मगर ज़ुबां कह नहीं पाता। ❤️";
 
 let typed = false;
 
@@ -38,6 +41,10 @@ function typeText(text, i) {
 
 card.addEventListener("click", toggleCard);
 
+cardWrap.addEventListener("click", () => {
+  music.play();
+});
+
 let startX = 0;
 cardWrap.addEventListener("touchstart", (e) => {
   startX = e.changedTouches[0].screenX;
@@ -64,20 +71,43 @@ musicBtn.addEventListener("click", async () => {
 
 const slides = [
   {
-    src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=900&q=80",
-    caption: "Every moment with you feels magical."
+    src: "HBD.jpeg",
+    caption: "To my wonderful wife, happy birthday."
   },
   {
-    src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80",
+    src: "HBD1.jpeg",
     caption: "Your smile is my favorite view."
   },
   {
-    src: "https://images.unsplash.com/photo-1529634597503-139d3726fed5?auto=format&fit=crop&w=900&q=80",
-    caption: "Here’s to us, today and always."
+    src: "HBD222.jpg",
+    caption: "Here’s to celebrating you today and always."
   },
   {
-    src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80",
+    src: "HBD3.jpeg",
     caption: "You are my forever celebration."
+  },{
+    src: "IMG_7573.jpeg",
+    caption: "You are the melody that plays in my heart."
+  },
+  {
+    src: "IMG_5550.JPG",
+    caption: "You are my favorite place to be."
+  },
+  {
+    src: "IMG_8081.jpeg",
+    caption: "Being with you feels deeply right."
+  },
+   {
+    src: "IMG_8406.jpeg",
+    caption: "You are the warmth I carry everywhere."
+  },
+   {
+    src: "IMG_8045.jpeg",
+    caption: "Every moment with you feels magical."
+  },
+  {
+    src: "IMG_4543.jpeg",
+    caption: "You are the love that changed everything for me."
   }
 ];
 
@@ -111,10 +141,82 @@ setInterval(() => {
   showSlide((slideIndex + 1) % slides.length);
 }, 3600);
 
-giftRibbon.addEventListener("click", () => {
+let giftStage = 0;
+let giftRevealed = false;
+
+const giftStages = [
+  {
+    note: "The gift heard you... tap again 💫",
+    button: "Keep Unwrapping ✨",
+    message: "Something sweet is glowing inside..."
+  },
+  {
+    note: "Almost there — one more magical tap 💖",
+    button: "Release the Magic 🎁",
+    message: "The ribbon is giving way..."
+  },
+  {
+    note: "Surprise unlocked! 🎉",
+    button: "Opening...",
+    message: "Baba Lala"
+  }
+];
+
+function sprinkleGiftMagic(amount = 14) {
+  const rect = gift.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  for (let i = 0; i < amount; i++) {
+    const spark = document.createElement("span");
+    spark.className = "gift-spark";
+    spark.textContent = ["✨", "💖", "🎊", "⭐"][Math.floor(Math.random() * 4)];
+    spark.style.left = `${centerX}px`;
+    spark.style.top = `${centerY}px`;
+    spark.style.setProperty("--spark-x", `${(Math.random() - .5) * 280}px`);
+    spark.style.setProperty("--spark-y", `${-80 - Math.random() * 170}px`);
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 1050);
+  }
+}
+
+function revealGift() {
+  gift.classList.remove("is-charging", "is-ready");
   gift.classList.add("open");
-  modal.classList.add("show");
-  launchFireworks();
+  sprinkleGiftMagic(34);
+
+  setTimeout(() => {
+    modal.classList.add("show");
+    launchFireworks();
+  }, 760);
+}
+
+giftRibbon.addEventListener("click", () => {
+  if (giftRevealed) return;
+
+  const stage = giftStages[giftStage];
+  gift.classList.remove("is-waking");
+  void gift.offsetWidth;
+  gift.classList.add("is-waking");
+
+  giftNote.textContent = stage.note;
+  giftRibbon.textContent = stage.button;
+  giftMessage.textContent = stage.message;
+  giftMessage.classList.add("show");
+  giftProgressFill.style.width = `${Math.min((giftStage + 1) * 34, 100)}%`;
+  sprinkleGiftMagic(10 + giftStage * 6);
+
+  if (giftStage === 1) {
+    gift.classList.add("is-charging");
+  }
+
+  if (giftStage >= giftStages.length - 1) {
+    giftRevealed = true;
+    gift.classList.add("is-ready");
+    setTimeout(revealGift, 900);
+  }
+
+  giftStage += 1;
 });
 
 closeModal.addEventListener("click", () => modal.classList.remove("show"));
