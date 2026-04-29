@@ -79,7 +79,7 @@ const slides = [
     caption: "Your smile is my favorite view."
   },
   {
-    src: "HBD222.jpg",
+    src: "HBD222.JPG",
     caption: "Here’s to celebrating you today and always."
   },
   {
