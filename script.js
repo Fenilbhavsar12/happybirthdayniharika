@@ -83,6 +83,10 @@ const slides = [
     caption: "Here’s to celebrating you today and always."
   },
   {
+    src: "IMG_4655.jpeg",
+    caption: "Happy birthday, my heart."
+  },
+  {
     src: "HBD3.jpeg",
     caption: "You are my forever celebration."
   },{
