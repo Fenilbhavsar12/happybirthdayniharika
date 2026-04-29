@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday, My Love ❤️</title>
+  <title>Happy Birthday, Bhuu Bhuu ❤️</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,7 +17,7 @@
   <main class="scene">
     <section class="hero">
       <p class="eyebrow">A little birthday surprise</p>
-      <h1>Happy Birthday, My Love ❤️</h1>
+      <h1>Happy Birthday, Bhuu Bhuu!! ❤️</h1>
       <p class="hint">Click or swipe the card to open it</p>
     </section>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="card-page card-inside">
-          <h2>My Love,</h2>
+        
           <p id="typewriter"></p>
           <span class="cursor">|</span>
         </div>
@@ -40,16 +40,19 @@
     </section>
 
     <section class="slideshow">
-      <h2>Our Beautiful Memories 📸</h2>
+     
       <div class="photo-frame">
-        <img id="slideImage" src="photo-1518199266791-5375a83190b7.avif" alt="Memory slideshow" />
-        <p id="slideCaption">Every moment with you feels magical.</p>
+        <img id="slideImage" src="HBD.jpeg" alt="Memory slideshow" />
+        <p id="slideCaption">To my wonderful wife, happy birthday.</p>
       </div>
       <div class="dots" id="dots"></div>
     </section>
 
     <section class="gift-section">
-      <p class="gift-note">Click the ribbon to open your gift</p>
+      <p class="gift-note" id="giftNote">Tap the ribbon to wake up the magic ✨</p>
+      <div class="gift-progress" aria-hidden="true">
+        <div id="giftProgressFill"></div>
+      </div>
 
       <div class="gift" id="gift">
         <div class="gift-lid">
@@ -57,8 +60,10 @@
           <div class="bow bow-right"></div>
         </div>
         <div class="gift-ribbon-vertical"></div>
-        <button class="gift-ribbon-horizontal" id="giftRibbon">Open Me 🎀</button>
+        <button class="gift-ribbon-horizontal" id="giftRibbon">Tap to Unwrap 🎀</button>
+        <div class="gift-glow"></div>
         <div class="gift-box"></div>
+        <div class="gift-message" id="giftMessage">A little magic is hiding inside...</div>
       </div>
     </section>
   </main>
@@ -66,11 +71,17 @@
   <div class="modal" id="giftModal">
     <button class="close" id="closeModal">×</button>
     <div class="modal-card">
+    
       <h2>Surprise! 🎁</h2>
-      <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="Birthday surprise" />
+      <div class="surprise-photo-wrap">
+        <img src="HBD.JPEG" alt="Birthday surprise" />
+        <span class="floating-heart">❤️</span>
+        <span class="floating-heart">✨</span>
+        <span class="floating-heart">💖</span>
+      </div>
       <p>
         You are my favorite person, my happiest thought, and my forever gift.
-        Happy Birthday, beautiful ❤️
+        Happy Birthday, Lalu ❤️
       </p>
     </div>
   </div>
